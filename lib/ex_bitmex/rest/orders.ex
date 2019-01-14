@@ -33,6 +33,13 @@ defmodule ExBitmex.Rest.Orders do
     |> parse_response
   end
 
+  @spec amend_all(credentials, [map]) :: term
+  def amend_all(%ExBitmex.Credentials{} = credentials, params) when is_list(params) do
+    "/order/all"
+    |> Rest.HTTPClient.auth_put(credentials, params)
+    |> parse_response
+  end
+
   @type cancel_error_reason :: shared_error_reason
 
   @spec cancel(credentials, params) ::
